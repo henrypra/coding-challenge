@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Coding Challenge</string>
     <string name="gist_list_author_created_by">created by</string>
+
+    <!--Bottom Navigation-->
+    <string name="menu_bottom_nav_all">All</string>
+    <string name="menu_bottom_nav_personal">Personal</string>
+    <string name="menu_bottom_nav_starred">Starred</string>
+    <string name="menu_bottom_nav_profile">Profile</string>
+    <string name="menu_bottom_nav_more">More</string>
 </resources>
