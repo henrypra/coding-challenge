@@ -19,9 +19,9 @@ class DetailActivity : BaseActivity(),
         loadDetailFragment()
     }
 
-    fun loadDetailFragment() {
+    private fun loadDetailFragment() {
         val detailFragment = DetailFragment()
-        detailFragment.presenter = DetailPresenter(this, this, detailFragment)
+        detailFragment.presenter = DetailPresenter(this, intent.getStringExtra("id"), this, detailFragment)
         fragmentNavigation.replaceFragment(detailFragment)
     }
 }

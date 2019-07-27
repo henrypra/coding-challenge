@@ -42,8 +42,8 @@ class MainAdapter(val context: Context?, var listener: GistClickListener) : Recy
         holder.desc.text = currentGist.description
         Picasso.get().load(currentGist.owner?.avatarUrl).into(holder.avatar)
         holder.itemView.setOnClickListener {
-            Timber.tag("TAG101").d("Adapter")
             listener.onGistClicked(currentGist)
+            Timber.tag("TAG101").d("Adapter")
         }
     }
 

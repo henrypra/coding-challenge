@@ -27,4 +27,25 @@ object GistEndpoint {
             }
         })
     }
+
+    fun getGistForId(context: Context?, gistId: String, callback: ServerCallback<Gist>) {
+        val call = Client.getAPIClient().create(IGistEndpoint::class.java).getSingleGist(gistId)
+
+        call.enqueue(object : Callback<Gist> {
+            override fun onResponse(call: Call<Gist>, response: Response<Gist>) {
+                if (response.body() != null && response.isSuccessful) {
+                    callback.onSuccess(response.body()!!)
+                } else {
+                    callback.onFailure()
+                }
+            }
+
+            override fun onFailure(call: Call<Gist>, t: Throwable) {
+                callback.onFailure()
+            }
+
+
+        })
+
+    }
 }

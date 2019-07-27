@@ -32,6 +32,7 @@ class MainActivity : BaseActivity(),
 
     override fun onGistGoToDetail(gist: Gist) {
         val intent = Intent(this@MainActivity, DetailActivity::class.java)
+        intent.putExtra("id", gist.id)
         this@MainActivity.startActivity(intent)
 
     }
