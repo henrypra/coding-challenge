@@ -11,7 +11,7 @@ class MainPresenter(val activity: BaseActivity,
                     val actionListener: MainActionListener,
                     val view: MainContract.View) : MainContract.Presenter {
     init {
-        ToolbarUtil.createTitleOnlyParams(activity, "All Gists")
+//        ToolbarUtil.createTitleOnlyParams(activity, "All Gists")
     }
 
     override fun retrieveGistData() {
