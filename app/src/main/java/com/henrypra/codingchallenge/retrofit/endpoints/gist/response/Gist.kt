@@ -24,6 +24,9 @@ data class Gist(@SerializedName("comments")
                 val history: List<History?>? = listOf(),
                 @SerializedName("html_url")
                 val htmlUrl: String? = "",
+                @SerializedName("files")
+                val files: Map<String, GistFiles>,
+                val gistFiles: List<GistFiles?>? = listOf(),
                 @SerializedName("id")
                 val id: String? = "",
                 @SerializedName("node_id")
