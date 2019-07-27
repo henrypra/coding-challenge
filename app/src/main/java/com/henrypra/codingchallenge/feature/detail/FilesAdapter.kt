@@ -1,17 +1,21 @@
 package com.henrypra.codingchallenge.feature.detail
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.henrypra.codingchallenge.R
 import com.henrypra.codingchallenge.retrofit.endpoints.gist.response.GistFiles
 import kotlinx.android.synthetic.main.item_file.view.*
 
 
-class FilesAdapter(val context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FilesAdapter(val context: Context?, var listener: FileClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var files = mutableListOf<GistFiles>()
     private val viewTypeEmpty = 0
@@ -38,6 +42,10 @@ class FilesAdapter(val context: Context?) : RecyclerView.Adapter<RecyclerView.Vi
         val currentFile = files[position]
         holder.filename.text = currentFile.filename
         holder.content.text = currentFile.content
+
+        holder.itemView.btn_copy?.setOnClickListener {
+            listener.onFileCopied(currentFile.content, context)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -51,5 +59,13 @@ class FilesAdapter(val context: Context?) : RecyclerView.Adapter<RecyclerView.Vi
 
     class EmptyHolder(view: View) : RecyclerView.ViewHolder(view)
 
+    interface FileClickListener {
 
+        fun onFileCopied(content: String?, context: Context?) {
+            val clipboard = context?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("label", content)
+            clipboard.primaryClip = clip
+            Toast.makeText(context, context.getString(R.string.clipboard), Toast.LENGTH_SHORT).show()
+        }
+    }
 }

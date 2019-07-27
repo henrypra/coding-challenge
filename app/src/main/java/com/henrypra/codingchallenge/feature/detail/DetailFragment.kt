@@ -11,9 +11,9 @@ import com.henrypra.codingchallenge.retrofit.endpoints.gist.response.Gist
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
 
-class DetailFragment : BaseContractFragment<DetailContract.Presenter>(), DetailContract.View {
+class DetailFragment : BaseContractFragment<DetailContract.Presenter>(), DetailContract.View, FilesAdapter.FileClickListener {
 
-    private val adapter: FilesAdapter by lazy { FilesAdapter(getCurrentContext()) }
+    private val adapter: FilesAdapter by lazy { FilesAdapter(getCurrentContext(), this) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
