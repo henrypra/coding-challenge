@@ -17,5 +17,5 @@ interface IGistEndpoint {
     fun getStarredGists(): Call<List<Gist>>
 
     @GET("gists/{gist_id}")
-    fun getSingleGist(@Path("gist_id") id: Int): Call<Gist>
+    fun getSingleGist(@Path("gist_id") id: String): Call<Gist>
 }

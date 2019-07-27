@@ -10,8 +10,9 @@ import com.henrypra.codingchallenge.R
 import com.henrypra.codingchallenge.retrofit.endpoints.gist.response.Gist
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_gists.view.*
+import timber.log.Timber
 
-class MainAdapter(val context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainAdapter(val context: Context?, var listener: GistClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var gistList = mutableListOf<Gist>()
 
@@ -40,6 +41,10 @@ class MainAdapter(val context: Context?) : RecyclerView.Adapter<RecyclerView.Vie
         holder.author.text = context?.getString(R.string.gist_list_author_created_by) + currentGist.owner?.login
         holder.desc.text = currentGist.description
         Picasso.get().load(currentGist.owner?.avatarUrl).into(holder.avatar)
+        holder.itemView.setOnClickListener {
+            listener.onGistClicked(currentGist)
+            Timber.tag("TAG101").d("Adapter")
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -53,6 +58,12 @@ class MainAdapter(val context: Context?) : RecyclerView.Adapter<RecyclerView.Vie
     }
 
     class EmptyHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    interface GistClickListener {
+
+        fun onGistClicked(gist: Gist)
+
+    }
 
 
 }

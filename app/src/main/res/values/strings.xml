@@ -8,4 +8,6 @@
     <string name="menu_bottom_nav_starred">Starred</string>
     <string name="menu_bottom_nav_profile">Profile</string>
     <string name="menu_bottom_nav_more">More</string>
+
+    <string name="clipboard">Copied to Clipboard!</string>
 </resources>

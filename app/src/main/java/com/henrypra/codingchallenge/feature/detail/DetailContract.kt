@@ -1,18 +1,20 @@
-package com.henrypra.codingchallenge.feature.main
+package com.henrypra.codingchallenge.feature.detail
 
 import com.henrypra.codingchallenge.architecture.BasePresenter
 import com.henrypra.codingchallenge.architecture.BaseView
 import com.henrypra.codingchallenge.retrofit.endpoints.gist.response.Gist
 
-interface MainContract {
+interface DetailContract {
 
     interface Presenter : BasePresenter {
-        fun retrieveGistData()
 
-        fun onGistClicked(gist: Gist)
+        fun retrieveGistForId()
+
     }
 
     interface View : BaseView<Presenter> {
-        fun displayGistData(gists: MutableList<Gist>)
+
+        fun displayGist(gist: Gist)
+
     }
 }

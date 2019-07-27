@@ -5,18 +5,12 @@ import com.henrypra.codingchallenge.retrofit.endpoints.gist.GistEndpoint.getAllG
 import com.henrypra.codingchallenge.retrofit.endpoints.gist.response.Gist
 import com.henrypra.codingchallenge.retrofit.essentials.RequestHelper
 import com.henrypra.codingchallenge.retrofit.essentials.ServerCallback
-import com.henrypra.codingchallenge.utility.ToolbarUtil
 
 class MainPresenter(val activity: BaseActivity,
                     val actionListener: MainActionListener,
                     val view: MainContract.View) : MainContract.Presenter {
-    init {
-        ToolbarUtil.createTitleOnlyParams(activity, "All Gists")
-    }
 
     override fun retrieveGistData() {
-
-
         RequestHelper<MutableList<Gist>>().makeRequest(view.getCurrentContext(), object : RequestHelper.Request<MutableList<Gist>> {
             override fun action(callback: ServerCallback<MutableList<Gist>>) {
                 getAllGists(view.getCurrentContext(), callback)
@@ -30,4 +24,7 @@ class MainPresenter(val activity: BaseActivity,
         })
     }
 
+    override fun onGistClicked(gist: Gist) {
+        actionListener.onGistGoToDetail(gist)
+    }
 }

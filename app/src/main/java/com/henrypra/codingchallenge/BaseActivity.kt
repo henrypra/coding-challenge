@@ -6,27 +6,22 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.henrypra.codingchallenge.architecture.ToolbarParams
 import kotlinx.android.synthetic.main.default_toolbar.*
+import timber.log.Timber
 
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onResume() {
-        super.onResume()
+        Timber.plant(Timber.DebugTree())
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onPause() {
-        super.onPause()
+        return if (item?.itemId == android.R.id.home) {
+            onBackPressed()
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
     }
 
     fun setupToolbar(toolbarParams: ToolbarParams) {
@@ -53,6 +48,14 @@ abstract class BaseActivity : AppCompatActivity() {
                 val actionBar = supportActionBar
                 if (actionBar != null) {
                     actionBar.setDisplayShowTitleEnabled(true)
+                    if (showBackNavigation) {
+                        actionBar.setDisplayHomeAsUpEnabled(true)
+                        actionBar.setHomeButtonEnabled(true)
+                        actionBar.setHomeAsUpIndicator(navdrawableId)
+                    } else {
+                        actionBar.setDisplayHomeAsUpEnabled(false)
+                        actionBar.setHomeButtonEnabled(false)
+                    }
                     actionBar.title = title
                     if (subTitle != null && !subTitle.isEmpty()) {
                         actionBar.subtitle = subTitle
@@ -63,5 +66,6 @@ abstract class BaseActivity : AppCompatActivity() {
             }
         }
     }
+
 
 }

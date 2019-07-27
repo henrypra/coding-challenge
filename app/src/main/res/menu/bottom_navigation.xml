@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_all"
-        android:icon="@drawable/ic_dashboard"
-        android:title="@string/menu_bottom_nav_all" />
+            android:id="@+id/nav_all"
+            android:icon="@drawable/ic_dashboard"
+            android:title="@string/menu_bottom_nav_all"/>
     <item
-        android:id="@+id/nav_starred"
-        android:icon="@drawable/ic_starred"
-        android:title="@string/menu_bottom_nav_starred" />
+            android:id="@+id/nav_starred"
+            android:icon="@drawable/ic_starred"
+            android:title="@string/menu_bottom_nav_starred"/>
     <item
-        android:id="@+id/nav_personal"
-        android:icon="@drawable/ic_personal"
-        android:title="@string/menu_bottom_nav_personal" />
+            android:id="@+id/nav_personal"
+            android:icon="@drawable/ic_personal"
+            android:title="@string/menu_bottom_nav_personal"/>
     <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_person"
-        android:title="@string/menu_bottom_nav_profile" />
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_person"
+            android:title="@string/menu_bottom_nav_profile"/>
     <item
-        android:id="@+id/nav_more"
-        android:icon="@drawable/ic_more"
-        android:title="@string/menu_bottom_nav_more" />
+            android:id="@+id/nav_more"
+            android:icon="@drawable/ic_more"
+            android:title="@string/menu_bottom_nav_more"/>
 </menu>
