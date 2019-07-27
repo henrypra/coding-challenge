@@ -33,9 +33,14 @@ class DetailFragment : BaseContractFragment<DetailContract.Presenter>(), DetailC
     }
 
     override fun displayGist(gist: Gist) {
-        tv_author_file?.text = gist.owner?.login.toString()
+        tv_author?.text = "by " + gist.owner?.login.toString()
         Picasso.get().load(gist.owner?.avatarUrl).into(img_avatar)
-        tv_description?.text = gist.description.toString()
+        if (gist.description.toString().isEmpty()) {
+            tv_description?.visibility = View.GONE
+        } else {
+            tv_description?.visibility = View.VISIBLE
+            tv_description?.text = gist.description.toString()
+        }
 
         adapter.files = gist.files.values.toMutableList()
         adapter.notifyDataSetChanged()

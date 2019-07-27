@@ -12,4 +12,10 @@
 
     <!--Elevations-->
     <dimen name="default_elevation">2dp</dimen>
+
+    <!--Text sizes-->
+    <dimen name="font_size_subtitle">14sp</dimen>
+    <dimen name="font_size_default">16sp</dimen>
+    <dimen name="font_size_header">18sp</dimen>
+    <dimen name="font_size_default_header">20sp</dimen>
 </resources>
