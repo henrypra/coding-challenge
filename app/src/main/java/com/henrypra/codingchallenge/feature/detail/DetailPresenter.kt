@@ -5,6 +5,7 @@ import com.henrypra.codingchallenge.retrofit.endpoints.gist.GistEndpoint
 import com.henrypra.codingchallenge.retrofit.endpoints.gist.response.Gist
 import com.henrypra.codingchallenge.retrofit.essentials.RequestHelper
 import com.henrypra.codingchallenge.retrofit.essentials.ServerCallback
+import com.henrypra.codingchallenge.utility.ToolbarUtil
 
 class DetailPresenter(val activity: BaseActivity,
                       val gistId: String,
@@ -18,11 +19,17 @@ class DetailPresenter(val activity: BaseActivity,
             }
 
             override fun onSuccess(response: Gist) {
+                displayToolbarTitle(response.files.values.toMutableList()[0].filename)
+
                 view.displayGist(response)
             }
 
             override fun onFailure() {}
         })
+    }
+
+    fun displayToolbarTitle(title: String?) {
+        ToolbarUtil.createTitleAndBackParams(activity, title, true)
     }
 
 

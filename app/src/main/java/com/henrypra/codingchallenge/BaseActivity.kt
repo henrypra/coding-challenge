@@ -15,20 +15,13 @@ abstract class BaseActivity : AppCompatActivity() {
         Timber.plant(Timber.DebugTree())
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onPause() {
-        super.onPause()
+        return if (item?.itemId == android.R.id.home) {
+            onBackPressed()
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
     }
 
     fun setupToolbar(toolbarParams: ToolbarParams) {
@@ -55,6 +48,14 @@ abstract class BaseActivity : AppCompatActivity() {
                 val actionBar = supportActionBar
                 if (actionBar != null) {
                     actionBar.setDisplayShowTitleEnabled(true)
+                    if (showBackNavigation) {
+                        actionBar.setDisplayHomeAsUpEnabled(true)
+                        actionBar.setHomeButtonEnabled(true)
+                        actionBar.setHomeAsUpIndicator(navdrawableId)
+                    } else {
+                        actionBar.setDisplayHomeAsUpEnabled(false)
+                        actionBar.setHomeButtonEnabled(false)
+                    }
                     actionBar.title = title
                     if (subTitle != null && !subTitle.isEmpty()) {
                         actionBar.subtitle = subTitle
@@ -65,5 +66,6 @@ abstract class BaseActivity : AppCompatActivity() {
             }
         }
     }
+
 
 }

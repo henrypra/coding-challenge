@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@color/color_primary"
     app:subtitleTextColor="@color/color_accent"
-    app:title="@string/app_name"
     app:titleTextColor="@color/color_accent">
 
 </androidx.appcompat.widget.Toolbar>
