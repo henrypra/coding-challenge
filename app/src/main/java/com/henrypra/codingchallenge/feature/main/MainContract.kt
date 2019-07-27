@@ -8,6 +8,8 @@ interface MainContract {
 
     interface Presenter : BasePresenter {
         fun retrieveGistData()
+
+        fun onGistClicked(gist: Gist)
     }
 
     interface View : BaseView<Presenter> {

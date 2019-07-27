@@ -10,8 +10,9 @@ import com.henrypra.codingchallenge.architecture.BaseContractFragment
 import com.henrypra.codingchallenge.retrofit.endpoints.gist.response.Gist
 import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainFragment : BaseContractFragment<MainContract.Presenter>(), MainContract.View {
-    private val adapter: MainAdapter by lazy { MainAdapter(getCurrentContext()) }
+class MainFragment : BaseContractFragment<MainContract.Presenter>(), MainContract.View, MainAdapter.GistClickListener {
+
+    private val adapter: MainAdapter by lazy { MainAdapter(getCurrentContext(), this) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -33,6 +34,10 @@ class MainFragment : BaseContractFragment<MainContract.Presenter>(), MainContrac
     override fun displayGistData(gists: MutableList<Gist>) {
         adapter.gistList = gists
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onGistClicked(gist: Gist) {
+        presenter?.onGistClicked(gist)
     }
 }
 
